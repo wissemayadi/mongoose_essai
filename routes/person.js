@@ -9,7 +9,11 @@ const router= express.Router();
 //@access public
 
 router.post("/",(req,res)=>{
-const newPerson= new Person({ ...req.body });
+
+  console.log(req.body)
+const newPerson= new Person( {...req.body} );
+
+console.log(newPerson)
 newPerson
 .save()
 .then(()=> res.send("new user has been added"))
@@ -26,6 +30,16 @@ newPerson
   
 //   })
 
+
+// router.post("/personnes",(req,res)=>{
+// let arrayP=[{"nom":"wissemayadi","age":23,favoriteFoods:["keftaji"]}
+// ,{"nom":"wissemayadi34","age":234,favoriteFoods:["lablebi"]}
+// ,{"nom":"wissemayadiboss","age":233,favoriteFoods:["7outt"]}];
+// Person.insertMany((arrayP).then(()=>
+// res.send("user itzed")).catch((err)=>console.log(err))
+// )
+// })
+
 //@Api http:localhost:5000/api/persons
 //@desc Get all persons
 //@access public
@@ -35,11 +49,11 @@ router.get("/", (req, res) => {
       .catch((err) => res.send(err));
   });
 
-router.get("/:name",(req,res)=>{
-  let {name}=req.params;
-  Person.find({name}).
-  then((persons)=>res.send(persons)).
-  catch((err)=>res.send(err));
-})
+// router.get("/:name",(req,res)=>{
+//   let {name}=req.params;
+//   Person.find({name}).
+//   then((persons)=>res.send(persons)).
+//   catch((err)=>res.send(err));
+// })
   
 module.exports = router;
